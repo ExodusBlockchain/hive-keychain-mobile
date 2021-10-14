@@ -5,6 +5,10 @@ import {
   Keyboard,
   View,
   useWindowDimensions,
+  Alert,
+  Modal,
+  Pressable,
+  Dimensions
 } from 'react-native';
 import {connect} from 'react-redux';
 import Toast from 'react-native-simple-toast';
@@ -28,6 +32,9 @@ import {encodeMemo} from 'components/bridge';
 import {getAccountKeys} from 'utils/hiveUtils';
 import {transfer, sendToken} from 'utils/hive';
 import {sanitizeAmount, sanitizeUsername} from 'utils/hiveUtils';
+import QRCode from 'react-native-qrcode-generator';
+import QRCodeScanner from 'react-native-qrcode-scanner';
+import {RNCamera} from 'react-native-camera';
 
 const PUBLIC = translate('common.public').toUpperCase();
 const PRIVATE = translate('common.private').toUpperCase();
@@ -47,6 +54,8 @@ const Transfer = ({
   const [loading, setLoading] = useState(false);
   const [step, setStep] = useState(1);
   const [privacy, setPrivacy] = useState(PUBLIC);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [isScanQRCode, setIsScanQRCode] = useState(false);
 
   const sendTransfer = async () => {
     setLoading(true);
@@ -73,6 +82,86 @@ const Transfer = ({
       memo: memo,
     });
   };
+
+  const onQRCodeGenerate = () => {
+    setIsScanQRCode(false)
+    setModalVisible(true)
+  }
+
+  const onScanQRCode = () => {
+    setIsScanQRCode(true)
+    setModalVisible(true) 
+  }
+
+  const onQRCode = () => {
+    Alert.alert(
+      translate('qrcode.choose'),
+      '',
+      [
+        { 
+          text: translate('qrcode.scan'), 
+          onPress: onScanQRCode 
+        },
+        {
+          text: translate('qrcode.generate'),
+          onPress: onQRCodeGenerate
+        },
+        {
+          text: translate('common.back'),
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+      ]
+    );
+  }
+
+  const onSuccessScanQRCode = async ({data}) => {
+    setModalVisible(false)
+    setTo(data)
+    onSend()
+  }
+
+  const renderModal = () => {
+    return (
+      <View style={styles.centeredView}>
+        <Modal animationType="slide" transparent={true} visible={modalVisible} >
+          <View style={styles.centeredView}>
+            <View style={styles.modalView}>
+              {/**
+                 * Visualizzo Il QR code
+                 */}
+              {!isScanQRCode && <QRCode
+                value={user.name}
+                size={300}
+                bgColor='black'
+                fgColor='white'
+              />}
+
+              {/**
+                 * Scansiono il QR code
+                 */}
+              {isScanQRCode && <QRCodeScanner
+                onRead={onSuccessScanQRCode}
+                showMarker
+                flashMode={RNCamera.Constants.FlashMode.off}
+                topViewStyle={styles.zeroView}
+                bottomViewStyle={styles.zeroView}
+                cameraStyle={styles.cameraContainer}
+              />}
+
+              <Separator height={20} />
+              <Pressable
+                style={[styles.button, styles.buttonClose]}
+                onPress={() => setModalVisible(!modalVisible)}
+              >
+                <Text style={styles.textStyle}>{translate('common.back')}</Text>
+              </Pressable>
+            </View>
+          </View>
+        </Modal>
+      </View>
+    )
+  }
 
   const onSend = async () => {
     Keyboard.dismiss();
@@ -147,6 +236,16 @@ const Transfer = ({
         <Separator height={20} />
 
         <ActiveOperationButton
+          title={translate('qrcode.title')}
+          disabled={amount.length==0 || !amount}
+          onPress={onQRCode}
+          style={[styles.send,amount.length==0 || !amount ? styles.qrcodedisabled : '']}
+          isLoading={loading}
+        />
+        
+        <Separator height={20} />
+
+        <ActiveOperationButton
           title={translate('common.send')}
           onPress={() => {
             if (!amount.length || !to.length) {
@@ -160,6 +259,8 @@ const Transfer = ({
           style={styles.send}
           isLoading={loading}
         />
+        
+        {renderModal()}
       </Operation>
     );
   } else {
@@ -230,6 +331,40 @@ const getDimensionedStyles = (color, height, width) =>
       width: width / 3,
       marginHorizontal: 0,
     },
+    qrcodedisabled: {
+      opacity: 0.6
+    },
+    centeredView: {
+      flex: 1,
+      justifyContent: "center",
+      alignItems: "center",
+      marginTop: 22
+    },
+    modalView: {
+      margin: 20,
+      backgroundColor: "white",
+      borderRadius: 20,
+      padding: 35,
+      alignItems: "center",
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 2
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 4,
+      elevation: 5
+    },
+    button: {
+      borderRadius: 20,
+      padding: 10,
+      elevation: 2
+    },
+    buttonClose: {
+      backgroundColor: "#2196F3",
+    },
+    zeroView: {flex: 0, height: 0},
+    cameraContainer: {height: Dimensions.get('window').height},
     warning: {color: 'red', fontWeight: 'bold'},
     back: {backgroundColor: '#7E8C9A', width: width / 3, marginHorizontal: 0},
     currency: {fontWeight: 'bold', fontSize: 18, color},

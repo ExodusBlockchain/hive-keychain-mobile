@@ -29,6 +29,12 @@
     "available": "Available",
     "back": "Back"
   },
+  "qrcode":{
+    "title": "QRcode",
+    "choose": "Choose what to do",
+    "generate": "Generate QRcode",
+    "scan": "Scan QRcode"
+  },
   "wallet": {
     "rc": "Resources:",
     "vp": "Voting:",
