@@ -56,6 +56,7 @@ const Transfer = ({
   const [privacy, setPrivacy] = useState(PUBLIC);
   const [modalVisible, setModalVisible] = useState(false);
   const [isScanQRCode, setIsScanQRCode] = useState(false);
+  const [send,setSend] = useState(false);
 
   const sendTransfer = async () => {
     setLoading(true);
@@ -75,6 +76,7 @@ const Transfer = ({
   const transferToken = async () => {
     setLoading(true);
 
+    console.log(sanitizeUsername(to));
     return await sendToken(user.keys.active, user.name, {
       symbol: currency,
       to: sanitizeUsername(to),
@@ -118,7 +120,8 @@ const Transfer = ({
   const onSuccessScanQRCode = async ({data}) => {
     setModalVisible(false)
     setTo(data)
-    onSend()
+    setStep(2)
+    setSend(true)
   }
 
   const renderModal = () => {
@@ -151,10 +154,10 @@ const Transfer = ({
 
               <Separator height={20} />
               <Pressable
-                style={[styles.button, styles.buttonClose]}
+                style={[styles.confirm, styles.button]}
                 onPress={() => setModalVisible(!modalVisible)}
               >
-                <Text style={styles.textStyle}>{translate('common.back')}</Text>
+                <Text style={{ color: "#ffffff", textAlign: 'center' }}>{translate('common.back')}</Text>
               </Pressable>
             </View>
           </View>
@@ -188,6 +191,8 @@ const Transfer = ({
   };
   const {color} = getCurrencyProperties(currency);
   const {height, width} = useWindowDimensions();
+
+  if(send && !loading) onSend();
 
   const styles = getDimensionedStyles(color, height, width);
   if (step === 1) {
@@ -237,10 +242,9 @@ const Transfer = ({
 
         <ActiveOperationButton
           title={translate('qrcode.title')}
-          disabled={amount.length==0 || !amount}
+          disabled={loading || amount.length==0 || !amount}
           onPress={onQRCode}
           style={[styles.send,amount.length==0 || !amount ? styles.qrcodedisabled : '']}
-          isLoading={loading}
         />
         
         <Separator height={20} />

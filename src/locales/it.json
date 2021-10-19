@@ -1,0 +1,169 @@
+{
+  "unlock": {"enterPIN": "Inserisci il tuo PIN", "authenticate": "Autenticati"},
+  "signup": {"confirm": "Conferma il tuo PIN", "choose": "Scegli il tuo PIN"},
+  "intro": {
+    "text": "HIVE alimenta un ecosistema in crescita di siti Web e applicazioni Web 3.0.",
+    "manage": "Gestisci in sicurezza i tuoi fondi e connettiti ai servizi basati su HIVE con KEYCHAIN.",
+    "existingAccount": "Account esistente",
+    "createAccount": "Nuovo Account"
+  },
+  "addAccountByKey": {"text": "Aggiungi il tuo account HIVE esistente a Portachiavi"},
+  "keys": {
+    "posting": "Pubblicazione",
+    "active": "Attivo",
+    "memo": "Memo",
+    "key_type": "{{type}} key"
+  },
+  "common": {
+    "import": "Importare",
+    "username": "username",
+    "confirm": "Conferma",
+    "privateKey": "Chiave Privata",
+    "private": "Privatp",
+    "public": "Pubblico",
+    "amount": "quantità",
+    "memo": "promemoria",
+    "send": "Invia",
+    "save": "Salva",
+    "balance": "Bilancio",
+    "available": "Disponbile",
+    "back": "Indietro"
+  },
+  "qrcode":{
+    "title": "QRcode",
+    "choose": "Scegli cosa fare",
+    "generate": "Genera QRcode",
+    "scan": "Scansiona QRcode"
+  },
+  "wallet": {
+    "rc": "Risorse:",
+    "vp": "Voto:",
+    "balance": "bilancio",
+    "no_tokens": "Nessun token Hive Engine trovato.",
+    "no_transaction": "Nessuna transazione recente.",
+    "add_memo": "Aggiungi la tua chiave memo per decifrare questo messaggio.",
+    "add_active": "Aggiungi la tua chiave attiva per eseguire questa operazione.",
+    "operations": {
+      "history": "Cronologia",
+      "transfer": {
+        "title": "Trasferimento fondi",
+        "memo": "PROMEMORIA (opzionale)",
+        "confirm": {
+          "from": "Da",
+          "to": "A",
+          "amount": "Quantità",
+          "memo": "Promemoria"
+        },
+        "warning": {
+          "phishing": "Questo account è stato elencato come un potenziale account di phishing, controlla l'ortografia e assicurati che sia l'account su cui desideri trasferire.",
+          "exchange_currency": "Questo conto di scambio non accetta depositi di {{currency}}.",
+          "exchange_memo": "Assicurati di aggiungere un promemoria durante il trasferimento su un conto di scambio.",
+          "missing_info": "Si prega di compilare il nome utente e l'importo per procedere"
+        }
+      },
+      "powerup": {"title": "Accendere!"},
+      "powerdown": {"title": "Spegnere"},
+      "delegation": {
+        "title": "Delega Potenza Hive",
+        "incoming": "Delegazioni in arrivo",
+        "outgoing": "Delegazioni in uscita"
+      },
+      "convert": {"title": "Converti in HIVE", "button": "Converti"}
+    }
+  },
+  "settings": {
+    "keys": {
+      "add": "AGGIUNGI CHIAVE",
+      "disclaimer": [
+        {
+          "text": "Per ricevere fondi, condividi semplicemente il nome del tuo account (visualizzato sopra) con il mittente.",
+          "style_do_not_translate": "disclaimer"
+        },
+        {
+          "text": "Tuttavia, molte applicazioni richiederanno una CHIAVE PRIVATA per dimostrare la proprietà o per condurre transazioni per tuo conto.",
+          "style_do_not_translate": "disclaimer"
+        },
+        {
+          "text": "CONDIVIDI SOLO CHIAVI PRIVATE CON PARTI DI CUI TI FIDI!",
+          "style_do_not_translate": "important"
+        },
+        {
+          "text": "In futuro, Hive Keychain per dispositivi mobili consentirà le transazioni da app a app, eliminando la necessità di utilizzare le chiavi private direttamente nelle app di terze parti.",
+          "style_do_not_translate": "disclaimer"
+        }
+      ]
+    },
+    "settings": {
+      "title": "Nodi RPC",
+      "disclaimer": [
+        "Puoi scegliere quale nodo RPC viene utilizzato per leggere le informazioni e trasmettere le transazioni da/verso la blockchain Hive.",
+        "Usa RPC 'DEFAULT' per consentire a Hive Keychain di scegliere il miglior nodo RPC in un determinato momento."
+      ]
+    }
+  },
+  "components": {
+    "moreInformation": {
+      "title": "CHIAVI (PASSWORD DELL'HIVE)",
+      "text1": "Azioni diverse richiedono l'uso di CHIAVI diverse. Queste CHIAVI vengono generate quando viene creato un nuovo account HIVE.",
+      "text2": "Puoi utilizzare il tuo Posting, Active o Master Key per importare il tuo account.",
+      "text3": "(Usa la tua chiave principale per sbloccare tutte le funzionalità dell'app).",
+      "text4": "Se utilizzi una Chiave Master, NON verrà salvata e verrà utilizzata solo per generare le tue altre Chiavi. Puoi aggiungere/modificare Account o Chiavi in qualsiasi momento."
+    },
+    "infoQR": {
+      "title": "Importa tramite QR Code",
+      "text1": "Puoi importare un account istantaneamente scansionando il codice QR corrispondente.",
+      "text2": "Per importare dall'estensione del browser Hive Keychain, vai a",
+      "text3": "Impostazioni",
+      "text4": " quindi fare clic su",
+      "text5": "Gestisci account",
+      "text6": "e",
+      "text7": "Mostra QR Code"
+    },
+    "forgotPIN": {
+      "title": "PIN dimenticato?",
+      "text": "Se hai dimenticato il PIN, puoi reimpostare il portachiavi e cancellare i dati, ma dovrai inserire nuovamente tutte le chiavi.",
+      "button": "Ripristina portachiavi"
+    },
+    "pinCode": {
+      "unsupportedBiometrics": {
+        "title": "Dati biometrici non supportati",
+        "text1": "I tuoi dati biometrici preferiti sono considerati non sicuri su questo dispositivo.",
+        "text2": "Si prega di cambiarlo in Impronte digitali.",
+        "button": "Vai alle impostazioni"
+      }
+    },
+    "picker": {
+      "prompt_user": "Seleziona un account",
+      "prompt_rpc": "Seleziona un nodo RPC",
+      "add_account": "+ AGGIUNGI NUOVO ACCOUNT"
+    }
+  },
+  "toast": {
+    "noMatch": "I codici PIN non corrispondono",
+    "authFailed": "Autenticazione fallita",
+    "account_already": "Hai già registrato questo account",
+    "transfer_success": "Il tuo trasferimento è andato a buon fine!",
+    "transfer_token_confirmed": "Il tuo trasferimento è stato trasmesso con successo a Give. L'aggiornamento del saldo potrebbe richiedere un po' di tempo.",
+    "transfer_token_unconfirmed": "Il tuo trasferimento è stato trasmesso con successo a Hive. Tuttavia, non abbiamo potuto confermare che sia stato elaborato da Hive Engine. Si prega di controllare il saldo tra un po' prima di riprovare.",
+    "powerup_success": "Il tuo potenziamento ha avuto successo!",
+    "powerdown_success": "Il tuo spegnimento ha avuto successo!",
+    "stop_powerdown_success": "Hai interrotto con successo il tuo spegnimento!",
+    "delegation_success": "La tua delegazione ha avuto successo!",
+    "stop_delegation_success": "Hai interrotto con successo la tua delegazione!",
+    "convert_success": "La tua conversione HBD ha avuto successo!",
+    "keys": {
+      "not_wanted_key": "Questa non è la tua chiave {{type}}!",
+      "not_a_key": "Questa non è una delle tue chiavi private!",
+      "copied": "La chiave è stata copiata negli appunti!"
+    },
+    "error_add_account": "Qualcosa è andato storto! Verifica le tue chiavi e la tua connessione."
+  },
+  "navigation": {
+    "log_out": "LOG OUT",
+    "add_account": "AGGIUNGI ACCOUNT",
+    "manage": "GESTISCI CHIAVI",
+    "settings": "IMPOSTAZIONI",
+    "about": "ABOUT",
+    "wallet": "WALLET"
+  }
+}
