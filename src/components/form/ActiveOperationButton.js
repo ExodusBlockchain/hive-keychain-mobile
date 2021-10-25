@@ -14,7 +14,7 @@ const ActiveOperationButton = (props) => {
           <Text style={styles.text}>{translate('wallet.add_active')}</Text>
         </View>
       )}
-      <EllipticButton {...props} disabled={!props.user.keys.active} />
+      <EllipticButton {...props} disabled={props.disabled || !props.user.keys.active} />
     </>
   );
 };
